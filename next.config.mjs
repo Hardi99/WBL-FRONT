@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+// Add configuration for external image domains
+const nextConfig = {
+    images: {
+        domains: ['cdn.pixabay.com', 'maps.googleapis.com'],
+    },
+};
 
 export default nextConfig;
