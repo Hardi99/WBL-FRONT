@@ -156,6 +156,15 @@ const Map = ({ selectedDream = null }) => {
         }
     }, [streetView, currentDream, isStreetView]);
 
+    useEffect(() => {
+        if (selectedDream) {
+            const { latitude, longitude } = selectedDream;
+            const position = { lat: latitude, lng: longitude };
+            // Logic to display Street View for the selected dream
+            console.log('Displaying Street View for:', position);
+        }
+    }, [selectedDream]);
+
     const handleBackToMap = () => {
         setIsStreetView(false);
         if (streetView) {

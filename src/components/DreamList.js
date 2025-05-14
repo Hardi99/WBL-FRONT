@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchCoordinates } from '@/services/coordinatesService';
 import Image from 'next/image';
 
-const DreamList = () => {
+const DreamList = ({ onVisitDream }) => {
     const [dreams, setDreams] = useState([]);
 
     const URL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://site--world-bucket-list-backend--bw9kxpd2k92h.code.run"
@@ -75,9 +75,8 @@ const DreamList = () => {
         window.location.href = `/dreams/edit/${dreamId}`;
     };
 
-    const visitDream = (coordinates) => {
-        // Center the map on the dream's coordinates
-        console.log('Visiting dream at coordinates:', coordinates);
+    const visitDream = (dream) => {
+        onVisitDream(dream);
     };
 
     return (
@@ -99,7 +98,7 @@ const DreamList = () => {
                         <div className="card-footer text-muted text-right">
                             <button
                                 className="btn btn-outline-secondary btn-sm"
-                                onClick={() => visitDream(dream.coordinates)}
+                                onClick={() => visitDream(dream)}
                             >
                                 Visiter
                             </button>
