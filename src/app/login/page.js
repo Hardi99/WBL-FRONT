@@ -11,6 +11,8 @@ const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
 
+    const URL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://site--world-bucket-list-backend--bw9kxpd2k92h.code.run"
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         setIsLoading(true);
@@ -21,7 +23,7 @@ const Login = () => {
         const password = formData.get('password');
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users/login`, {
+            const response = await fetch(`${URL}/api/users/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password }),

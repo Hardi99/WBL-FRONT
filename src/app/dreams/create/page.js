@@ -18,6 +18,8 @@ const DreamCreation = () => {
     const [longitude, setLongitude] = useState('');
     const router = useRouter();
 
+    const URL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://site--world-bucket-list-backend--bw9kxpd2k92h.code.run"
+
     const handleImageSearch = async (query) => {
         try {
             const results = await fetchImages(query);
@@ -50,7 +52,7 @@ const DreamCreation = () => {
                 return;
             }
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/dreams`, {
+            const response = await fetch(`${URL}/api/dreams`, {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',

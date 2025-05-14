@@ -8,10 +8,12 @@ import Image from 'next/image';
 const DreamList = () => {
     const [dreams, setDreams] = useState([]);
 
+    const URL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://site--world-bucket-list-backend--bw9kxpd2k92h.code.run"
+
     useEffect(() => {
         const loadDreams = async () => {
             try {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/dreams`);
+                const response = await fetch(`${URL}/api/dreams`);
                 const data = await response.json();
                 setDreams(data);
             } catch (error) {
@@ -33,7 +35,7 @@ const DreamList = () => {
 
     const toggleDreamDone = async (dreamId) => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/dreams/${dreamId}`, {
+            const response = await fetch(`${URL}/api/dreams/${dreamId}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ done: !dreams.find(dream => dream.id === dreamId).done }),
@@ -55,7 +57,7 @@ const DreamList = () => {
     const deleteDream = async (dreamId) => {
         if (window.confirm('Êtes-vous sûr de vouloir supprimer ce rêve ?')) {
             try {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/dreams/${dreamId}`, {
+                const response = await fetch(`${URL}/api/dreams/${dreamId}`, {
                     method: 'DELETE',
                 });
                 if (response.ok) {
