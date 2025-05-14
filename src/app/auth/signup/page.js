@@ -2,10 +2,13 @@
 
 // Add a Signup page for user registration
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import Input from '@/components/Input';
 import Button from '@/components/Button';
 
 const SignupPage = () => {
+    const router = useRouter();
+
     const handleSignup = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -21,7 +24,10 @@ const SignupPage = () => {
                 body: JSON.stringify({ email, password }),
             });
             if (response.ok) {
+                const { token } = await response.json();
+                localStorage.setItem('token', token);
                 alert('User registered successfully');
+                router.push('/dashboard'); // Redirect to dashboard
             } else {
                 alert('Failed to register user');
             }

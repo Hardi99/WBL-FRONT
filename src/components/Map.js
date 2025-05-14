@@ -89,48 +89,25 @@ const Map = ({ selectedDream = null }) => {
                         return;
                     }
 
-                    const marker = new google.maps.marker.AdvancedMarkerElement({
+                    const marker = new google.maps.Marker({
                         position: { lat: dream.latitude, lng: dream.longitude },
                         map: map,
                         title: dream.description,
                     });
 
-                    const infoWindow = new google.maps.InfoWindow({
-                        content: `
-                            <div style="padding: 10px;">
-                                <h3>${dream.description}</h3>
-                                ${dream.imagePath ? `<img src="${dream.imagePath}" alt="${dream.description}" style="width: 200px; height: 150px; object-fit: cover;">` : ''}
-                                <p>Statut: ${dream.done ? 'Réalisé' : 'À faire'}</p>
-                                <button onclick="window.openStreetView(${dream.id})" class="bg-blue-500 text-white px-4 py-2 rounded mt-2">
-                                    Visiter
-                                </button>
-                            </div>
-                        `,
-                    });
-
                     marker.addListener('click', () => {
-                        infoWindow.open(map, marker);
+                        window.openStreetView(dream.id);
                     });
 
                     newMarkers.push(marker);
                 });
 
                 setMarkers(newMarkers);
-
-                // Ajouter la fonction globale pour ouvrir Street View
-                window.openStreetView = (dreamId) => {
-                    const dream = dreams.find(d => d.id === dreamId);
-                    if (dream) {
-                        setCurrentDream(dream);
-                        setIsStreetView(true);
-                    }
-                };
             } catch (error) {
                 console.error('Error creating markers:', error);
-                setError('Erreur lors de l\'affichage des marqueurs');
             }
         }
-    }, [map, dreams, markers]);
+    }, [map, dreams]);
 
     useEffect(() => {
         if (map && selectedDream) {

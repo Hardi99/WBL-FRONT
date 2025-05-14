@@ -23,7 +23,7 @@ const DreamList = ({ onVisitDream }) => {
 
         loadDreams();
 
-        // Ajouter la fonction globale pour ouvrir Street View
+        // Add global function for opening Street View
         window.openStreetView = (dreamId) => {
             const dream = dreams.find(d => d.id === dreamId);
             if (dream) {
@@ -31,7 +31,7 @@ const DreamList = ({ onVisitDream }) => {
                 setIsStreetView(true);
             }
         };
-    }, []);
+    }, [URL, dreams]);
 
     const toggleDreamDone = async (dreamId) => {
         try {
