@@ -7,9 +7,12 @@ import DreamList from '@/components/DreamList';
 
 const DreamsView = () => {
     const [selectedDream, setSelectedDream] = useState(null);
+    const [isStreetView, setIsStreetView] = useState(false);
 
     const handleVisitDream = (dream) => {
         setSelectedDream(dream);
+        setIsStreetView(true);
+        // Open Street View if the dream has coordinates
     };
 
     return (
@@ -21,7 +24,7 @@ const DreamsView = () => {
 
             {/* Map on the right */}
             <div className="w-2/3 relative">
-                <Map selectedDream={selectedDream} />
+                <Map selectedDream={selectedDream} isStreetView={isStreetView} setIsStreetView={setIsStreetView} />
             </div>
         </div>
     );

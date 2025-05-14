@@ -76,7 +76,11 @@ const DreamList = ({ onVisitDream }) => {
     };
 
     const visitDream = (dream) => {
-        onVisitDream(dream);
+        if (dream.latitude && dream.longitude) {
+            onVisitDream(dream);
+        } else {
+            console.warn('Dream has invalid coordinates:', dream);
+        }
     };
 
     return (

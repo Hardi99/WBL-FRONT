@@ -96,7 +96,8 @@ const Map = ({ selectedDream = null }) => {
                     });
 
                     marker.addListener('click', () => {
-                        window.openStreetView(dream.id);
+                        setCurrentDream(dream);
+                        setIsStreetView(true);
                     });
 
                     newMarkers.push(marker);
@@ -127,9 +128,14 @@ const Map = ({ selectedDream = null }) => {
 
     useEffect(() => {
         if (streetView && currentDream) {
-            const position = { lat: currentDream.latitude, lng: currentDream.longitude };
-            streetView.setPosition(position);
-            streetView.setVisible(isStreetView);
+            const { latitude, longitude } = currentDream;
+            if (latitude && longitude) {
+                const position = { lat: latitude, lng: longitude };
+                streetView.setPosition(position);
+                streetView.setVisible(isStreetView);
+            } else {
+                console.warn('Current dream has invalid coordinates');
+            }
         }
     }, [streetView, currentDream, isStreetView]);
 
