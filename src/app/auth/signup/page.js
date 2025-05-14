@@ -12,8 +12,10 @@ const SignupPage = () => {
         const email = formData.get('email');
         const password = formData.get('password');
 
+        const URL = 'https://site--world-bucket-list-backend--bw9kxpd2k92h.code.run'
+
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users/register`, {
+            const response = await fetch(`${URL}/api/users/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password }),

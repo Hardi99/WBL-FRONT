@@ -11,7 +11,7 @@ const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
 
-    const URL = "https://site--world-bucket-list-backend--bw9kxpd2k92h.code.run"
+    const URL = 'https://site--world-bucket-list-backend--bw9kxpd2k92h.code.run'
 
     const handleSubmit = async (event) => {
         event.preventDefault();
