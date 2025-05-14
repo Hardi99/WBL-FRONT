@@ -16,7 +16,7 @@ const Header = () => {
         if (!token && !pathname.startsWith('/auth/')) {
             router.push('/auth/login');
         }
-    }, [pathname]);
+    }, [router, pathname]);
 
     const handleLogout = () => {
         localStorage.removeItem('token');

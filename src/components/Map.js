@@ -130,7 +130,7 @@ const Map = ({ selectedDream = null }) => {
                 setError('Erreur lors de l\'affichage des marqueurs');
             }
         }
-    }, [map, dreams]);
+    }, [map, dreams, markers]);
 
     useEffect(() => {
         if (map && selectedDream) {
