@@ -143,6 +143,31 @@ const DreamEdit = ({ params }) => {
                 handleClick={handleFetchStreetView} 
                 classes="btn__secondary" 
             />
+            
+            {streetImages && (
+                <div className="mt-4">
+                    <h3 className="text-lg font-medium mb-2">
+                        {streetImages.type === 'streetview' ? 'Vue Street View' : 'Vue Satellite'}
+                    </h3>
+                    <div className="relative w-full h-[400px] rounded-lg overflow-hidden">
+                        <Image
+                            src={streetImages.url}
+                            alt={streetImages.label}
+                            className="w-full h-full object-cover"
+                            width={600}
+                            height={400}
+                        />
+                        <div className="absolute bottom-4 right-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm">
+                            {streetImages.label}
+                        </div>
+                        {streetImages.type === 'satellite' && (
+                            <div className="absolute top-4 left-4 bg-yellow-500 bg-opacity-90 text-black px-3 py-1 rounded-full text-sm">
+                                Street View non disponible à cet endroit
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
 
             <p>Utilisez <a href='https://www.latlong.net/'>ce lien</a> pour trouver les coordonnées de votre lieu</p>
 

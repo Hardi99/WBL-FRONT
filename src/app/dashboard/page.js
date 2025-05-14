@@ -47,12 +47,10 @@ const Dashboard = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-white rounded-lg shadow-lg p-6">
                         <h2 className="text-xl font-semibold mb-4">Mes Rêves</h2>
+                        <p className="text-gray-600 mb-4">
+                            Ajouter un nouveau rêve.
+                        </p>
                         <div className="space-y-4">
-                            <Button 
-                                label="Voir tous mes rêves" 
-                                handleClick={() => router.push('/dreams/view')}
-                                classes="btn__primary w-full"
-                            />
                             <Button 
                                 label="Créer un nouveau rêve" 
                                 handleClick={() => router.push('/dreams/create')}
@@ -67,8 +65,8 @@ const Dashboard = () => {
                             Explorez vos rêves sur la carte interactive.
                         </p>
                         <Button 
-                            label="Voir la carte" 
-                            handleClick={() => router.push('/map')}
+                            label="Voir la carte des rêves" 
+                            handleClick={() => router.push('/dreams/view')}
                             classes="btn__primary w-full"
                         />
                     </div>
